@@ -8,6 +8,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/P0081_ViewById" />
+            <option value="$PROJECT_DIR$/ViewById" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/p0031Firstproject" />
             <option value="$PROJECT_DIR$/p0041basicviewer" />
