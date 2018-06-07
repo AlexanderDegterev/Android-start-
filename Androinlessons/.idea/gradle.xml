@@ -9,6 +9,19 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/P0081_ViewById" />
+            <option value="$PROJECT_DIR$/P0091_OnClickButtons" />
+            <option value="$PROJECT_DIR$/P0101_Listener" />
+            <option value="$PROJECT_DIR$/P0102_ActivityListener" />
+            <option value="$PROJECT_DIR$/P0111_ResValues" />
+            <option value="$PROJECT_DIR$/P0121_LogAndMess" />
+            <option value="$PROJECT_DIR$/P0131_MenuSimple" />
+            <option value="$PROJECT_DIR$/P0141_MenuAdv" />
+            <option value="$PROJECT_DIR$/P0151_ContextMenu" />
+            <option value="$PROJECT_DIR$/P0161_DynamicLayout" />
+            <option value="$PROJECT_DIR$/P0171_DynamicLayout2" />
+            <option value="$PROJECT_DIR$/P0181_DynamicLayout3" />
+            <option value="$PROJECT_DIR$/P0191_SimpleCalculator" />
+            <option value="$PROJECT_DIR$/TEST_parsing_with_jsoup" />
             <option value="$PROJECT_DIR$/ViewById" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/p0031Firstproject" />
