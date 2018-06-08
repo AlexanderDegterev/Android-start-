@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         //Запишем в переменную текст, введённый в текстовое поле
         //String req = lists.getText().toString();
         //String req = (String) lists.getItemAtPosition(position);
-        final String req = ((EditText) searchText).getText().toString();
+       //final String req = ((EditText) searchText).getText().toString();
     } // CLOSE onCreate
 
     private class ParseTask extends AsyncTask<Void, Void, String> {
@@ -127,33 +127,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    View.OnClickListener oclButton = new View.OnClickListener() {
-//
-//        //@Override ключевое слово, которое позволяет в дочернем классе заново создать реализацию метода родительского класса.
-//        @Override
-//        public void onClick(View v) {
-//            String LNG = String.valueOf(req.length());
+    View.OnClickListener oclButton = new View.OnClickListener() {
+
+        //@Override ключевое слово, которое позволяет в дочернем классе заново создать реализацию метода родительского класса.
+        @Override
+        public void onClick(View v) {
+            String req = ((EditText) searchText).getText().toString();
+            String LNG = String.valueOf(req.length());
 //            tv.clearComposingText();
-//            tv.setText(LNG);
+            tv.setText(LNG);
 //            //проверим введено ли что-нибудь в текстовое поле
-//            if (req.length() > 0) {
-//                Toast.makeText(MainActivity.this, "Более 0", Toast.LENGTH_LONG).show();
+            if (req.length() > 0) {
+                Toast.makeText(MainActivity.this, "Более 0", Toast.LENGTH_LONG).show();
 //
 //                //некий код, который опишем в следующем блоке статей.
 //
-//            } else {
+            } else {
 //                //создадим всплывающее окно с предупреждением, если ничего не ввели.
-//                Toast.makeText(MainActivity.this, "НЕ введены данные", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "НЕ введены данные", Toast.LENGTH_LONG).show();
 //                Toast toast = Toast.makeText(
 //                        getApplicationContext(),
 //                        //Это текст, который я написал в одном файле, о нём позже.
 //                        R.string.textErrorNullSearch,
 //                        Toast.LENGTH_LONG);
 //                toast.show();
-//            }
+            }
 //            // присвоим обработчик кнопке OK (button)
-//            searchButton.setOnClickListener(oclButton);
-//        }
-//    };  //CLOSE View.OnClickListener oclButton
+           searchButton.setOnClickListener(oclButton);
+        }
+    };  //CLOSE View.OnClickListener oclButton
 }
 
