@@ -52,6 +52,15 @@ public class MainActivity extends AppCompatActivity {
         //String req = lists.getText().toString();
         //String req = (String) lists.getItemAtPosition(position);
        //final String req = ((EditText) searchText).getText().toString();
+
+        String req = ((EditText) searchText).getText().toString();
+        String LNG = String.valueOf(req.length());
+//            tv.clearComposingText();
+        tv.setText(LNG);
+//            //проверим введено ли что-нибудь в текстовое поле
+        //if (req.length() > 0) {
+            Toast.makeText(MainActivity.this, "Более 0", Toast.LENGTH_LONG).show();
+//
     } // CLOSE onCreate
 
     private class ParseTask extends AsyncTask<Void, Void, String> {
@@ -134,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             String req = ((EditText) searchText).getText().toString();
             String LNG = String.valueOf(req.length());
+            Toast.makeText(MainActivity.this, LNG, Toast.LENGTH_LONG).show();
 //            tv.clearComposingText();
             tv.setText(LNG);
 //            //проверим введено ли что-нибудь в текстовое поле

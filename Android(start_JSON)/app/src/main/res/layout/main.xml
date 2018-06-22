@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/no_text" />
+            android:text="NO TEXT" />
 
         <Button
             android:id="@+id/searchButton"
