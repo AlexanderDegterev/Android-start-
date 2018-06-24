@@ -19,6 +19,20 @@
             android:inputType="textPersonName"
             android:text="NO TEXT" />
 
+        <TextView
+            android:id="@+id/textViewUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="URL" />
+
+        <EditText
+            android:id="@+id/searchUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="url for JSON" />
+
         <Button
             android:id="@+id/searchButton"
             android:layout_width="match_parent"
