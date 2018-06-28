@@ -1,63 +1,36 @@
-package ru.startandroid.androidstartjson;
+package ru.startandroid.getjson;
 
+import android.content.Context;
+import com.google.gson.Gson;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    //http://androiddocs.ru/parsing-json-poluchaem-i-razbiraem-json-s-vneshnego-resursa/
-
     public static String LOG_TAG = "my_log";
-
-    Button searchButton;
-    EditText searchText;
-    EditText searchUrl;
-    ListView lists;
-    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         new ParseTask().execute();
-
-        // find View-elements
-        searchButton = (Button) findViewById(R.id.searchButton);
-        searchText = (EditText) findViewById(R.id.searchText);
-        searchUrl = (EditText) findViewById(R.id.searchUrl);
-        lists = (ListView) findViewById(R.id.lists);
-        tv = (TextView) findViewById(R.id.tv);
-
-        String req = ((EditText) searchText).getText().toString();
-        String lng = String.valueOf(req.length());
-        tv.setText(lng);
-//            //we will check whether something is entered into a text box
-        if (req.length() > 0) {
-            Toast.makeText(MainActivity.this, "Более 0", Toast.LENGTH_LONG).show();
-        }
-
-        // assign a handler to a button OK
-        //searchButton.setOnClickListener(oclButton);
-//
-    } // CLOSE onCreate
+    }
 
     private class ParseTask extends AsyncTask<Void, Void, String> {
 
@@ -65,13 +38,15 @@ public class MainActivity extends AppCompatActivity {
         BufferedReader reader = null;
         String resultJson = "";
 
+
         @Override
         protected String doInBackground(Void... params) {
             // obtain data from an external resource
+            Log.d(LOG_TAG, "class PArseTAsk");
             try {
                 URL url = new URL("http://androiddocs.ru/api/friends.json");
                 //URL url = new URL("http://calapi.inadiutorium.cz/api/v0/en/calendars/default/today");
-                searchUrl.setText(url.getHost()+url.getPath());
+                //searchUrl.setText(url.getHost()+url.getPath());
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
@@ -139,25 +114,51 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    View.OnClickListener oclButton = new View.OnClickListener() {
-//
-//        //@Override ключевое слово, которое позволяет в дочернем классе заново создать реализацию метода родительского класса.
-//        @Override
-//        public void onClick(View v) {
-//            String req = ((EditText) searchText).getText().toString();
-//            String lng = String.valueOf(req.length());
-//            Toast.makeText(MainActivity.this, lng, Toast.LENGTH_LONG).show();
-//            tv.setText(lng);
-////            //проверим введено ли что-нибудь в текстовое поле
-//            if (req.length() > 0) {
-//                Toast.makeText(MainActivity.this, "Более 0", Toast.LENGTH_LONG).show();
-//
-//            } else {
-////                //создадим всплывающее окно с предупреждением, если ничего не ввели.
-//                Toast.makeText(MainActivity.this, "НЕ введены данные", Toast.LENGTH_LONG).show();
-//            }
-////
-//        }
-//    };  //CLOSE View.OnClickListener oclButton
-}
+    class JSONHelper {
 
+        static List<Friend> importFromJSON(Context context) {
+
+            InputStreamReader streamReader = null;
+            FileInputStream fileInputStream = null;
+            try{
+                fileInputStream = context.openFileInput(FILE_NAME);
+                streamReader = new InputStreamReader(fileInputStream);
+                Gson gson = new Gson();
+                DataItems dataItems = gson.fromJson(streamReader, DataItems.class);
+                return  dataItems.getPhones();
+            }
+            catch (IOException ex){
+                ex.printStackTrace();
+            }
+            finally {
+                if (streamReader != null) {
+                    try {
+                        streamReader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (fileInputStream != null) {
+                    try {
+                        fileInputStream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private static class DataItems {
+            private List<Friend> friends;
+
+            List<Friend> getPhones() {
+                return friends;
+            }
+            void setFriends(List<Friend> friends) {
+                this.friends = friends;
+            }
+        }
+    }
+}
