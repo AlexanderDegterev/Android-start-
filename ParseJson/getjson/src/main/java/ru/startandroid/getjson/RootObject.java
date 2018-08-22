@@ -3,7 +3,8 @@ package ru.startandroid.getjson;
 import java.util.ArrayList;
 
 public class RootObject {
-    public String data;
+    private String data;
+    private ArrayList<Friend> friends;
 
     public String getData() {
         return this.data;
@@ -13,13 +14,11 @@ public class RootObject {
         this.data = data;
     }
 
-    private ArrayList<Friend> friends;
-
     public ArrayList<Friend> getFriends() {
-        return this.friends;
+        return friends;
     }
 
-    public void setFriends(ArrayList<Friend> friends) {
+    public void setFriend(ArrayList<Friend> friends) {
         this.friends = friends;
     }
 }

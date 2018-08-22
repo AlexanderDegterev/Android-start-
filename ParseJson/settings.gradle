@@ -1,1 +1,1 @@
-include ':app', ':getjson', ':getjson'
+include ':app', ':getjson', ':getjson', ':getjson_v2'
